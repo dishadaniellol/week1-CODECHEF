@@ -38,7 +38,7 @@ body {
 .date-container {
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -151,8 +151,9 @@ body {
 }
 
 .calendar-header h2 {
-  margin: 0;
-  font-weight: bold;
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: 900;
 }
 
 .calendar-header button {
@@ -176,7 +177,7 @@ body {
   border-radius: 50%;
   border: 1px solid #ebeaef;
   background-color: white;
-  font-size: 14px;
+  font-size: 20px;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -219,17 +220,24 @@ body {
 }
 
 .weekday {
+  margin-bottom: 25px;
   text-align: center;
   padding: 10px;
   font-weight: bold;
   background-color: white;
-  font-size: 14px;
+  font-size: 20px;
   border: none;
 }
 
 @media screen and (max-width: 768px) {
   .container {
     flex-direction: column;
+  }
+
+  .calendar-day {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 15px; 
   }
 
   .left-section {
