@@ -257,7 +257,11 @@ body {
   }
 
   .calendar-header h2 {
-    margin-left: 5px;
+    margin-left: 15px;
+  }
+
+  .date-container {
+    right: 0;
   }
 }
 
