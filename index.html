@@ -47,7 +47,7 @@
       .date-container {
         position: absolute;
         top: 10px;
-        right: 20px;
+        right: 5px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -160,8 +160,8 @@
       }
 
       .calendar-header h2 {
-        margin: 0;
-        font-weight: bold;
+        margin-left: 10px;
+        font-weight: 900;
       }
 
       .calendar-header button {
@@ -185,7 +185,7 @@
         border-radius: 50%;
         border: 1px solid #ebeaef;
         background-color: white;
-        font-size: 14px;
+        font-size: 20px;
         width: 100%;
         box-sizing: border-box;
         display: flex;
@@ -228,6 +228,7 @@
       }
 
       .weekday {
+        margin-bottom: 10px;
         text-align: center;
         padding: 10px;
         font-weight: bold;
@@ -239,6 +240,10 @@
       @media screen and (max-width: 768px) {
         .container {
           flex-direction: column;
+        }
+
+        .calendar-day {
+          font-size: 14px; 
         }
 
         .left-section {
