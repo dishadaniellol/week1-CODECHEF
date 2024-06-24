@@ -38,7 +38,7 @@ body {
 .date-container {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -151,8 +151,7 @@ body {
 }
 
 .calendar-header h2 {
-  margin-left: 20px;
-  font-size: 30px;
+  margin-left: 25px;
   font-weight: 900;
 }
 
@@ -194,8 +193,8 @@ body {
 }
 
 .calendar-day.today {
-  background-color: #249ee3 !important;
-  color: white !important;
+  background-color: #249ee3;
+  color: white;
 }
 
 .calendar-day.active {
@@ -220,12 +219,12 @@ body {
 }
 
 .weekday {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   text-align: center;
   padding: 10px;
   font-weight: bold;
   background-color: white;
-  font-size: 20px;
+  font-size: 14px;
   border: none;
 }
 
@@ -235,9 +234,7 @@ body {
   }
 
   .calendar-day {
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 15px; 
+    font-size: 14px;
   }
 
   .left-section {
@@ -257,6 +254,10 @@ body {
   .calendar-day {
     width: 100%;
     box-sizing: border-box;
+  }
+
+  .calendar-header h2 {
+    margin-left: 15px;
   }
 }
 

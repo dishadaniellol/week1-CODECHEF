@@ -30,19 +30,15 @@ function renderCalendar(monthOffset = 0) {
   const currentYear = today.getFullYear();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
   const lastDayOfPrevMonth = new Date(currentYear, currentMonth, 0);
-  const lastDayOfCurrentMonth = new Date(
-    currentYear,
-    currentMonth + 1,
-    0
-  );
+  const lastDayOfCurrentMonth = new Date(currentYear, currentMonth + 1, 0);
   const totalDays = lastDayOfCurrentMonth.getDate();
   const startDay = firstDayOfMonth.getDay() || 7;
 
   const monthYearElement = document.getElementById("current-month-year");
-  monthYearElement.textContent = firstDayOfMonth.toLocaleString(
-    "default",
-    { month: "long", year: "numeric" }
-  );
+  monthYearElement.textContent = firstDayOfMonth.toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+  });
 
   for (let i = 1; i < startDay; i++) {
     const prevMonthDay = lastDayOfPrevMonth.getDate() - startDay + i + 1;
@@ -94,14 +90,17 @@ function renderCalendar(monthOffset = 0) {
 
 function hoverDate(element) {
   if (!element.classList.contains("today")) {
-    element.style.backgroundColor = "#004080";
+    element.style.backgroundColor = "#5ed3ec";
+    element.style.color = "white";
+  } else {
+    element.style.backgroundColor = "#249ee3";
     element.style.color = "white";
   }
 }
 
 function unhoverDate(element) {
   if (element.classList.contains("today")) {
-    element.style.backgroundColor = "#4CAF50";
+    element.style.backgroundColor = "#249ee3";
     element.style.color = "white";
   } else if (element.classList.contains("active")) {
     element.style.backgroundColor = "#5ed3ec";
@@ -125,10 +124,10 @@ function selectDate(day) {
   const currentMonth = today.getMonth();
   const currentYear = today.getFullYear();
   selectedDate = new Date(currentYear, currentMonth, day);
+
   updateCalendarUI();
   renderDeadlines();
-  document.getElementById("deadline-input-container").style.display =
-    "flex";
+  document.getElementById("deadline-input-container").style.display = "flex";
 
   updateDateDisplay();
 }
@@ -162,6 +161,8 @@ function updateCalendarUI() {
 
     if (isToday(date)) {
       el.classList.add("today");
+      el.style.backgroundColor = "#249ee3";
+      el.style.color = "white";
     } else if (
       day === selectedDate.getDate() &&
       !el.classList.contains("past") &&
@@ -189,8 +190,10 @@ function updateDateDisplay() {
     .getDate()
     .toString()
     .padStart(2, "0");
-  document.getElementById("current-month").textContent =
-    now.toLocaleString("default", { month: "long" });
+  document.getElementById("current-month").textContent = now.toLocaleString(
+    "default",
+    { month: "long" }
+  );
   document.getElementById("current-year").textContent = now.getFullYear();
 }
 
@@ -202,10 +205,7 @@ function addDeadline() {
       selectedDate.getMonth() + 1
     )
       .toString()
-      .padStart(2, "0")}-${selectedDate
-      .getDate()
-      .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
     if (!deadlines[dateString]) {
       deadlines[dateString] = [];
     }
@@ -217,8 +217,7 @@ function addDeadline() {
 }
 
 function renderDeadlines() {
-  const todayDeadlinesElement =
-    document.getElementById("today-deadlines");
+  const todayDeadlinesElement = document.getElementById("today-deadlines");
   const upcomingDeadlinesElement =
     document.getElementById("upcoming-deadlines");
   todayDeadlinesElement.innerHTML = "";
@@ -228,10 +227,7 @@ function renderDeadlines() {
     selectedDate.getMonth() + 1
   )
     .toString()
-    .padStart(2, "0")}-${selectedDate
-    .getDate()
-    .toString()
-    .padStart(2, "0")}`;
+    .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
 
   if (deadlines[currentDateString]) {
     deadlines[currentDateString].forEach((deadline) => {
@@ -241,8 +237,7 @@ function renderDeadlines() {
       const tickIcon = document.createElement("span");
       tickIcon.innerHTML = "✓";
       tickIcon.classList.add("tick-icon");
-      tickIcon.onclick = () =>
-        removeDeadline(currentDateString, deadline);
+      tickIcon.onclick = () => removeDeadline(currentDateString, deadline);
       deadlineItem.appendChild(tickIcon);
       todayDeadlinesElement.appendChild(deadlineItem);
     });
@@ -284,9 +279,7 @@ function renderDeadlines() {
 }
 
 function removeDeadline(dateString, deadline) {
-  if (
-    confirm("Are you done with this deadline? Click OK to remove it.")
-  ) {
+  if (confirm("Are you done with this deadline? Click OK to remove it.")) {
     const index = deadlines[dateString].indexOf(deadline);
     if (index > -1) {
       deadlines[dateString].splice(index, 1);
@@ -316,5 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const todayDayElement = document.querySelector(".calendar-day.today");
   if (todayDayElement) {
     todayDayElement.classList.add("active");
+    todayDayElement.style.backgroundColor = "#249ee3";
   }
 });
