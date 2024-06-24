@@ -30,19 +30,15 @@ function renderCalendar(monthOffset = 0) {
   const currentYear = today.getFullYear();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
   const lastDayOfPrevMonth = new Date(currentYear, currentMonth, 0);
-  const lastDayOfCurrentMonth = new Date(
-    currentYear,
-    currentMonth + 1,
-    0
-  );
+  const lastDayOfCurrentMonth = new Date(currentYear, currentMonth + 1, 0);
   const totalDays = lastDayOfCurrentMonth.getDate();
   const startDay = firstDayOfMonth.getDay() || 7;
 
   const monthYearElement = document.getElementById("current-month-year");
-  monthYearElement.textContent = firstDayOfMonth.toLocaleString(
-    "default",
-    { month: "long", year: "numeric" }
-  );
+  monthYearElement.textContent = firstDayOfMonth.toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+  });
 
   for (let i = 1; i < startDay; i++) {
     const prevMonthDay = lastDayOfPrevMonth.getDate() - startDay + i + 1;
@@ -185,8 +181,14 @@ function updateCalendarUI() {
 
 function updateDateDisplay() {
   const now = new Date();
-  document.getElementById("current-day").textContent = now.getDate().toString().padStart(2, "0");
-  document.getElementById("current-month").textContent = now.toLocaleString("default", { month: "long" });
+  document.getElementById("current-day").textContent = now
+    .getDate()
+    .toString()
+    .padStart(2, "0");
+  document.getElementById("current-month").textContent = now.toLocaleString(
+    "default",
+    { month: "long" }
+  );
   document.getElementById("current-year").textContent = now.getFullYear();
 }
 
@@ -198,10 +200,7 @@ function addDeadline() {
       selectedDate.getMonth() + 1
     )
       .toString()
-      .padStart(2, "0")}-${selectedDate
-      .getDate()
-      .toString()
-      .padStart(2, "0")}`;
+      .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
     if (!deadlines[dateString]) {
       deadlines[dateString] = [];
     }
@@ -214,7 +213,8 @@ function addDeadline() {
 
 function renderDeadlines() {
   const todayDeadlinesElement = document.getElementById("today-deadlines");
-  const upcomingDeadlinesElement = document.getElementById("upcoming-deadlines");
+  const upcomingDeadlinesElement =
+    document.getElementById("upcoming-deadlines");
   todayDeadlinesElement.innerHTML = "";
   upcomingDeadlinesElement.innerHTML = "";
 
@@ -222,10 +222,7 @@ function renderDeadlines() {
     selectedDate.getMonth() + 1
   )
     .toString()
-    .padStart(2, "0")}-${selectedDate
-    .getDate()
-    .toString()
-    .padStart(2, "0")}`;
+    .padStart(2, "0")}-${selectedDate.getDate().toString().padStart(2, "0")}`;
 
   if (deadlines[currentDateString]) {
     deadlines[currentDateString].forEach((deadline) => {
