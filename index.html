@@ -197,13 +197,13 @@
       }
 
       .calendar-day:hover {
-        background-color: #5ed3ec;
+        background-color: #004080;
         color: white;
       }
 
       .calendar-day.today {
-        background-color: #249ee3;
-        color: white;
+        background-color: #249ee3 !important;
+        color: white !important;
       }
 
       .calendar-day.active {
@@ -293,61 +293,6 @@
 
       #add-deadline-button:hover {
         background-color: #2427e3;
-      }
-
-      #today-button {
-        padding: 12px 24px;
-        background-color: #249ee3;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        outline: 2px solid #3c5aa6;
-      }
-
-      #today-button:hover {
-        background-color: #3c5aa6;
-      }
-
-      .month-year-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        background-color: #f0f8ff;
-        padding: 10px;
-        border-radius: 10px;
-      }
-
-      #month-year-input {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-        margin-right: 10px;
-        flex-grow: 1;
-      }
-
-      #go-to-month-year-button {
-        padding: 10px 20px;
-        background-color: #249ee3;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        outline: 2px solid #3c5aa6;
-      }
-
-      #go-to-month-year-button:hover {
-        background-color: #3c5aa6;
       }
 
       .tick-icon {
@@ -612,15 +557,14 @@
       }
 
       function updateDateDisplay() {
-        const selectedDateString = formatDateAsWords(selectedDate);
-        document.querySelector(".date-day").textContent = selectedDate
+        const now = new Date();
+        document.getElementById("current-day").textContent = now
           .getDate()
           .toString()
           .padStart(2, "0");
-        document.querySelector(".date-month").textContent =
-          selectedDateString.split(" ")[1];
-        document.querySelector(".date-year").textContent =
-          selectedDateString.split(" ")[2];
+        document.getElementById("current-month").textContent =
+          now.toLocaleString("default", { month: "long" });
+        document.getElementById("current-year").textContent = now.getFullYear();
       }
 
       function addDeadline() {
@@ -733,41 +677,12 @@
         renderCalendar();
       }
 
-      function updateCurrentDateDisplay() {
-        const now = new Date();
-        document.getElementById('current-day').textContent = now.getDate().toString().padStart(2, '0');
-        document.getElementById('current-month').textContent = now.toLocaleString('default', { month: 'long' });
-        document.getElementById('current-year').textContent = now.getFullYear();
-      }
-
       document.addEventListener("DOMContentLoaded", () => {
-        updateCurrentDateDisplay();
         renderCalendar();
         renderDeadlines();
         document
           .getElementById("add-deadline-button")
           .addEventListener("click", addDeadline);
-
-        document
-          .getElementById("today-button")
-          .addEventListener("click", () => {
-            today.setMonth(initialMonth);
-            today.setFullYear(initialYear);
-            renderCalendar();
-          });
-
-        document
-          .getElementById("go-to-month-year-button")
-          .addEventListener("click", () => {
-            const monthYearInput = document.getElementById("month-year-input");
-            const [month, year] = monthYearInput.value.split("/");
-            if (month && year) {
-              today.setMonth(parseInt(month) - 1);
-              today.setFullYear(parseInt(year));
-              renderCalendar();
-              monthYearInput.value = "";
-            }
-          });
 
         updateDateDisplay();
 
