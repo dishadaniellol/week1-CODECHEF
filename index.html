@@ -160,7 +160,7 @@
       }
 
       .calendar-header h2 {
-        margin-left: 10px;
+        margin-left: 25px;
         font-weight: 900;
       }
 
@@ -197,13 +197,13 @@
       }
 
       .calendar-day:hover {
-        background-color: #004080;
+        background-color: #5ed3ec;
         color: white;
       }
 
       .calendar-day.today {
-        background-color: #249ee3 !important;
-        color: white !important;
+        background-color: #249ee3;
+        color: white;
       }
 
       .calendar-day.active {
@@ -471,14 +471,17 @@
 
       function hoverDate(element) {
         if (!element.classList.contains("today")) {
-          element.style.backgroundColor = "#004080";
+          element.style.backgroundColor = "#5ed3ec";
+          element.style.color = "white";
+        } else {
+          element.style.backgroundColor = "#249ee3";
           element.style.color = "white";
         }
       }
 
       function unhoverDate(element) {
         if (element.classList.contains("today")) {
-          element.style.backgroundColor = "#4CAF50";
+          element.style.backgroundColor = "#249ee3";
           element.style.color = "white";
         } else if (element.classList.contains("active")) {
           element.style.backgroundColor = "#5ed3ec";
@@ -540,6 +543,8 @@
 
           if (isToday(date)) {
             el.classList.add("today");
+            el.style.backgroundColor = "#249ee3";
+            el.style.color = "white";
           } else if (
             day === selectedDate.getDate() &&
             !el.classList.contains("past") &&
@@ -694,6 +699,7 @@
         const todayDayElement = document.querySelector(".calendar-day.today");
         if (todayDayElement) {
           todayDayElement.classList.add("active");
+          todayDayElement.style.backgroundColor = "#249ee3";
         }
       });
     </script>
