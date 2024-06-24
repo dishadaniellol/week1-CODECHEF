@@ -151,6 +151,7 @@ body {
 }
 
 .calendar-header h2 {
+  margin-right: 30px;
   margin-left: 30px;
   font-weight: 900;
   font-size: 30px;
