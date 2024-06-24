@@ -202,8 +202,8 @@
       }
 
       .calendar-day.today {
-        background-color: #249ee3 !important;
-        color: white !important;
+        background-color: #249ee3;
+        color: white;
       }
 
       .calendar-day.active {
@@ -376,10 +376,10 @@
     <div class="container">
       <div class="left-section">
         <div class="date-container">
-          <div class="date-box-left date-day">24</div>
+          <div class="date-box-left date-day" id="current-day"></div>
           <div class="date-box-right">
-            <div class="date-month">June</div>
-            <div class="date-year">2024</div>
+            <div class="date-month" id="current-month"></div>
+            <div class="date-year" id="current-year"></div>
           </div>
         </div>
         <div class="today-container">
@@ -733,7 +733,15 @@
         renderCalendar();
       }
 
+      function updateCurrentDateDisplay() {
+        const now = new Date();
+        document.getElementById('current-day').textContent = now.getDate().toString().padStart(2, '0');
+        document.getElementById('current-month').textContent = now.toLocaleString('default', { month: 'long' });
+        document.getElementById('current-year').textContent = now.getFullYear();
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
+        updateCurrentDateDisplay();
         renderCalendar();
         renderDeadlines();
         document
