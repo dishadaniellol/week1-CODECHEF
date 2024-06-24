@@ -202,8 +202,8 @@
       }
 
       .calendar-day.today {
-        background-color: #249ee3;
-        color: white;
+        background-color: #249ee3 !important;
+        color: white !important;
       }
 
       .calendar-day.active {
@@ -516,6 +516,13 @@
             "beforeend",
             `<div class="calendar-day future" onclick="selectNextMonthDate(${i})">${i}</div>`
           );
+        }
+      }
+
+      function hoverDate(element) {
+        if (!element.classList.contains("today")) {
+          element.style.backgroundColor = "#004080";
+          element.style.color = "white";
         }
       }
 

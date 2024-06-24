@@ -70,10 +70,19 @@ function renderCalendar(monthOffset = 0) {
       className += " deadline";
     }
 
-    calendarDaysElement.insertAdjacentHTML(
-      "beforeend",
-      `<div class="${className}" onclick="selectDate(${day})" onmouseover="hoverDate(this)" onmouseout="unhoverDate(this)">${day}</div>`
-    );
+    const dayElement = document.createElement("div");
+    dayElement.className = className;
+    dayElement.textContent = day;
+    dayElement.onclick = () => selectDate(day);
+    dayElement.onmouseover = () => hoverDate(dayElement);
+    dayElement.onmouseout = () => unhoverDate(dayElement);
+
+    if (isToday(date)) {
+      dayElement.style.backgroundColor = "#249ee3";
+      dayElement.style.color = "white";
+    }
+
+    calendarDaysElement.appendChild(dayElement);
   }
 
   const remainingDays =
